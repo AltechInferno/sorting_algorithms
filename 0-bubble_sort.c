@@ -1,13 +1,11 @@
 #include "sort.h"
-
+void swap(int *array, int before, int after, int size);
 /**
  * bubble_sort - this algorithm implements the bubble sort
  * @array: array
  * @size: the size of the array
  * Return: null
  */
-
-void swap(int *array, int before, int after, int size);
 
 void bubble_sort(int *array, size_t size)
 {
