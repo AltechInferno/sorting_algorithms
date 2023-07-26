@@ -1,51 +1,32 @@
 #include "sort.h"
 
-void swap(listint_t **head, listint_t *node1, listint_t *node2);
+void swap(listint_t **head, listint_t *n1, listint_t *n2);
 /**
  * swap - this swaps two nodes
  * @head: head node
- * @node1: first node
- * @node2: second node
+ * @n1: first node
+ * @n2: second node
  *
  * Return: void
  */
-void swap(listint_t **head, listint_t *node1, listint_t *node2)
+void swap(listint_t **head, listint_t *n1, listint_t *n2)
 {
-	if (node1 == node2)
-		return;
+	listint_t *prev, *next;
 
-	if (node1->next == node2)
-	{
-		node1->next = node2->next;
-		node2->prev = node1->prev;
-		node1->prev = node2;
-		node2->next = node1;
+	prev = n1->prev;
+	next = n2->next;
 
-	}
-	else if (node2->next == node1)
-	{
-		node2->next = node1->next;
-		node1->prev = node2->prev;
-		node2->prev = node1;
-		node1->next = node2;
-	}
+	if (prev != NULL)
+		prev->next = n2;
 	else
-	{
-		listint_t *node1_prev = node1->prev;
-		listint_t *node1_next = node1->next;
+		*head = n2;
 
-	if (node1_prev)
-		node1_prev->next = node2;
-	else
-		*head = node2;
-
-	if (node1_next)
-		node1_next->prev = node2;
-		node1->prev = node2->prev;
-		node1->next = node2->next;
-		node2->prev = node1_prev;
-		node2->next = node1_next;
-	}
+	n1->prev = n2;
+	n1->next = next;
+	n2->prev = prev;
+	n2->next = n1;
+	if (next)
+		next->prev = n1;
 }
 
 /**
