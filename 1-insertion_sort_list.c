@@ -14,18 +14,38 @@ void swap(listint_t **head, listint_t *node1, listint_t *node2)
 	if (node1 == node2)
 		return;
 
-	if (node1->prev != NULL)
-		node1->prev->next = node2;
+	if (node1->next == node2)
+	{
+		node1->next = node2->next;
+		node2->prev = node1->prev;
+		node1->prev = node2;
+		node2->next = node1;
+
+	}
+	else if (node2->next == node1)
+	{
+		node2->next = node1->next;
+		node1->prev = node2->prev;
+		node2->prev = node1;
+		node1->next = node2;
+	}
+	else
+	{
+		listint_t *node1_prev = node1->prev;
+		listint_t *node1_next = node1->next;
+
+	if (node1_prev)
+		node1_prev->next = node2;
 	else
 		*head = node2;
 
-	if (node2->next != NULL)
-		node2->next->prev = node1;
-
-	node1->next = node2->next;
-	node2->prev = node1->prev;
-	node1->prev = node2;
-	node2->next = node1;
+	if (node1_next)
+		node1_next->prev = node2;
+		node1->prev = node2->prev;
+		node1->next = node2->next;
+		node2->prev = node1_prev;
+		node2->next = node1_next;
+	}
 }
 
 /**
