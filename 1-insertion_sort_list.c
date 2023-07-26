@@ -1,11 +1,11 @@
 #include "sort.h"
 
-void swap(listint_t **head, listint_t *n1, listint_t *n2);
+void swap(listint_t **head, listint_t *node1, listint_t *node2);
 /**
  * swap - this swaps two nodes
  * @head: head node
- * @n1: first node
- * @n2: second node
+ * @node1: first node
+ * @node2: second node
  *
  * Return: void
  */
